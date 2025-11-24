@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 body{
-  background-color: rgb(7, 48, 100);
+  max-width: 1920px;
+  padding: 0 100px;
+  margin: 0 auto;
 }
-
-nav{
-  background-color: rgb(12, 56, 138);
-  color: white;
+.inp{
+  border: 1px solid rgb(98, 165, 228);
 }
