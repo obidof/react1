@@ -103,7 +103,7 @@ export default function Register({ children }) {
             <input onChange={(e) => setEmail(e.target.value)} className='p-2 border outline-0 rounded-xl w-full inp ' type="Email" placeholder='Email' />
             <input onChange={(e) => setPassword(e.target.value)} className='p-2 border outline-0 rounded-xl w-full inp ' type="Password" placeholder='Password' />
             <button className={`py-2 px-8 rounded-xl cursor-pointer text-white text-xl ${Loading ? 'bg-blue-300 active:scale-100' : 'bg-blue-400 active:scale-90'} flex items-center gap-3`} disabled={Loading}>{Loading ? <MiniLoader /> : "Sumbit"}</button>
-            <p className='text-center'>Royhatdan o'tganmisiz<a onClick={() => setTab("login")} href="Login" className='text-blue-400'>Login</a></p>
+            <p className='text-center flex justify-center gap-2 '>Royhatdan o'tganmisiz<p onClick={() => setTab("login")} className='text-blue-400'>Login</p></p>
           </form>
         </Box> :
           <Box sx={style}>
@@ -113,7 +113,7 @@ export default function Register({ children }) {
               <input onChange={(e) => setUserame(e.target.value)} className='p-2 border outline-0 rounded-xl w-full inp ' type="text" placeholder='Name' />
               <input onChange={(e) => setPassword(e.target.value)} className='p-2 border outline-0 rounded-xl w-full inp ' type="Password" placeholder='Password' />
               <button className={`py-2 px-8 rounded-xl cursor-pointer text-white text-xl ${Loading ? 'bg-blue-300 active:scale-100' : 'bg-blue-400 active:scale-90'} flex items-center gap-3`} disabled={Loading}>{Loading ? <MiniLoader /> : "Sumbit"}</button>
-              <p className='text-center'>Royhatdan o'tmaganmisiz<a onClick={() => setTab("register")} href="register" className='text-blue-400'>Register</a></p>
+              <p className='text-center flex justify-center gap-2'>Royhatdan o'tmaganmisiz<p onClick={() => setTab("register")} className='text-blue-400'>Register</p></p>
             </form>
           </Box>
         }

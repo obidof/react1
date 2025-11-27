@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 function Clothes() {
 
@@ -44,15 +45,17 @@ function Clothes() {
   return (
     <div className='mt-20 grid grid-cols-5 gap-12 mb-12 '>
       {clothes?.map((item) => (
-        <div key={item.key} className=' relative border-2 border-blue-400 rounded-xl overflow-hidden shadow-2xl'>
-          <span className={`text-2xl absolute right-2 top-2  cursor-pointer ${item.isLiked ? "text-red-700" : "text-gray-300"}`}><FaHeart /></span>
-          <img src={item.image} alt={item.name} className='h-[300px] w-full object-cover mx-auto' />
-          <div className='m-4'>
-            <h1 className='text-2xl'>{item.name}</h1>
-            <p className='text-xl'>Narxi: {item.price} ming</p>
-            <button className='text-2xl bg-blue-400 hover:bg-blue-500 w-full py-2 flex items-center text-white justify-center mt-4 transition rounded-xl  '>Savatga <FaShoppingCart /></button>
+        <NavLink to={`/product/${item.name}`}  key={item.key}>
+          <div className=' relative border-2 border-blue-400 rounded-xl overflow-hidden shadow-2xl'>
+            <span className={`text-2xl absolute right-2 top-2  cursor-pointer ${item.isLiked ? "text-red-700" : "text-gray-300"}`}><FaHeart /></span>
+            <img src={item.image} alt={item.name} className='h-[300px] w-full object-cover mx-auto' />
+            <div className='m-4'>
+              <h1 className='text-2xl'>{item.name}</h1>
+              <p className='text-xl'>Narxi: {item.price} ming</p>
+              <button className='text-2xl bg-blue-400 hover:bg-blue-500 w-full py-2 flex items-center text-white justify-center mt-4 transition rounded-xl  '>Savatga <FaShoppingCart /></button>
+            </div>
           </div>
-        </div>
+        </NavLink>
       ))}
     </div>
   )
