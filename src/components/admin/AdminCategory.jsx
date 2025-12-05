@@ -57,15 +57,15 @@ function AdminCategory() {
                             </Tooltip>
                         </NavLink>
 
-                        <NotifyModal id={item.id}>
-                            <Tooltip title="Delete">
+                        <NotifyModal message={"Siz bu kategoriyani o'chirib tashlasangiz unga tegishli barcha elonlar o'chib ketadi va ularni orqaga qaytarib bo'lmaydi."} id={item.id}>
+                            <Tooltip title="Delete"> 
                                 <FaTrashAlt className='text-red-600' />
                             </Tooltip>
                         </NotifyModal>
 
                         <RenameCategory category={item}>
                         <Tooltip title="Change">
-                            <FaPenFancy className='text-orange-500' />
+                            <FaPenFancy className='text-green-500' />
                         </Tooltip>
                         </RenameCategory>
 

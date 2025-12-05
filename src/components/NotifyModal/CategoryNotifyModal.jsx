@@ -18,7 +18,7 @@ const style = {
   p: 5,
 };
 
-export default function NotifyModal({ children, id }) {
+export default function NotifyModal({ children, id, message }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,8 +41,9 @@ export default function NotifyModal({ children, id }) {
           <CgClose onClick={handleClose} className='text-2xl absolute right-5 top-4' />
           <div className='flex justify-center'><TiWarningOutline className='text-8xl text-red-500' /></div>
           <p className='text-2xl text-center mt-4 text-gray-500'>
-            Siz bu kategoriyani o'chirib tashlasangiz unga tegishli barcha elonlar o'chib ketadi va ularni orqaga qaytarib bo'lmaydi.
+            {message}
           </p>
+          
           <div className='mt-8 flex justify-center gap-10'>
             <button onClick={handleClose} className=' text-xl bg-red-600 w-35 py-2 rounded-2xl text-white'>Bekor qilish</button>
             <button onClick={daleteCategory} className='text-xl bg-green-500 w-35 py-2 rounded-2xl text-white'>Tasdiqlash</button>

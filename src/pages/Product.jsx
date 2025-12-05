@@ -10,7 +10,7 @@ function Product() {
 
     const productData = {
         name: "Loro piano Futbolka",
-        price: 345000,
+        price: "345 000",
         count: 4,
         images: [
             "https://paffos.com.ua/wp-content/uploads/2022/09/img_0024.jpeg",
@@ -31,7 +31,8 @@ function Product() {
                 </div>
 
                 <div className='border border-gray-400 p-6 rounded-2xl'>
-                    <h1 className='text-3xl font-bold text-blue-400'>Narxi: {productData?.price} So'm</h1>
+                    <h1 className='text-4xl font-bold text-blue-500'>{productData?.name}</h1>
+                    <h1 className='text-3xl font-bold text-blue-500 mt-2'>Narxi: {productData?.price} So'm</h1>
                     <button className=' flex items-center gap-3 mt-3 px-10 py-3 bg-blue-400 text-xl text-white rounded-xl cursor-pointer active:scale-95'>
                         Savatga solish <CgShoppingCart size={25} />
                     </button>

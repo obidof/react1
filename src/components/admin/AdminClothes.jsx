@@ -1,6 +1,10 @@
+import { Tooltip } from '@mui/material';
 import React, { useState } from 'react'
-import { FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { FaHeart, FaPenFancy, FaShoppingCart, FaTrashAlt } from 'react-icons/fa';
+import { GrView } from 'react-icons/gr';
 import { NavLink } from 'react-router-dom';
+import NotifyModal from '../NotifyModal/CategoryNotifyModal';
+import RenameCategory from './RenameCategory';
 
 function AdminClothes() {
 
@@ -40,20 +44,33 @@ function AdminClothes() {
   return (
     <div className='grid grid-cols-5 gap-12 mb-12 '>
       {clothes?.map((item) => (
-        <NavLink to={`/product/${item.name}`}  key={item.key}>
-          <div className=' relative border-2 border-blue-400 rounded-xl overflow-hidden shadow-2xl'>
-            <span className={`text-2xl absolute right-2 top-2  cursor-pointer ${item.isLiked ? "text-red-700" : "text-gray-300"}`}><FaHeart /></span>
+        <div key={item.key} className=' relative border-2 border-blue-400 rounded-xl overflow-hidden shadow-2xl'>
+          <NavLink to={`/product/${item.name}`}>
             <img src={item.image} alt={item.name} className='h-[300px] w-full object-cover mx-auto' />
-            <div className='m-4'>
-              <h1 className='text-2xl'>{item.name}</h1>
-              <p className='text-xl'>Narxi: {item.price} ming</p>
-              <button className='text-2xl bg-blue-400 hover:bg-blue-500 w-full py-2 flex items-center text-white justify-center mt-4 transition rounded-xl  '>Savatga <FaShoppingCart /></button>
+          </NavLink>
+          <div className='m-4'>
+            <h1 className='text-2xl'>{item.name}</h1>
+            <p className='text-xl'>Narxi: {item.price} ming</p>
+            <div className='flex item-center gap-6 text-xl mt-6 justify-end'>
+
+              <NotifyModal message={"Siz bu ellonni o'chirib tashlamoqchimisiz. agar uni o'chirib tashlasangiz qayta tiklab bo'lmaydi."} id={item.id}>
+                <Tooltip title="Delete">
+                  <FaTrashAlt className='text-red-600' />
+                </Tooltip>
+              </NotifyModal>
+
+              <RenameCategory category={item}>
+                <Tooltip title="Change">
+                  <FaPenFancy className='text-orange-500' />
+                </Tooltip>
+              </RenameCategory>
+
             </div>
           </div>
-        </NavLink>
+        </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default AdminClothes;

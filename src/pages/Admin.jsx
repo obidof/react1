@@ -4,7 +4,7 @@ import AdminClothes from '../components/admin/AdminClothes';
 
 function Admin() {
 
-    const [tabs, setTabs] = useState(1);
+    const [tabs, setTabs] = useState();
 
     return (
         <div className='pt-28'>
