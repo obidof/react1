@@ -6,12 +6,17 @@ import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import Root from './Root.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queriClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Root />
-      <Toaster />
-    </BrowserRouter>
+    <QueryClientProvider client={queriClient}>
+      <BrowserRouter>
+        <Root />
+        <Toaster />
+      </BrowserRouter>
+    </QueryClientProvider>
   </StrictMode>,
-)
+);
