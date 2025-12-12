@@ -37,7 +37,8 @@ function Clothes() {
       id: 5,
       name: "Loro piano kepka",
       price: 235,
-      image: "https://di2ponv0v5otw.cloudfront.net/posts/2025/07/25/688436549f19e292722cbd2a/m_688600e47ac629cab0dd7cbd.jpg",
+      image: "https://images.uzum.uz/d3tme5dsp2tj49o6ivig/original.jpg",
+      image: "",
       isLiked: true,
     },
   ]);

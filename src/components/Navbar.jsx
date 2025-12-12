@@ -3,15 +3,17 @@ import { FaHeart, FaRegUserCircle, FaShoppingCart, FaUserTie } from 'react-icons
 import Register from './Auth/Register';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from "../assets/Logo.png"
+import { useGetUser } from '../hooks/user';
+import ProfileModal from './Auth/Profile';
 function Navbar() {
-    const role = "admin"
+    const { data, isLoading, error } = useGetUser()
+    const role = data?.role
 
     const nav = useNavigate();
     const homeNavigate = () => {
         nav("/");
-        console.log("salom");
     }
-    
+
     return (
         <div className='z-50 bg-blue-400 text-white py-4 px-12 flex justify-between items-center fixed w-full left-0'>
             <div onClick={homeNavigate}>
@@ -27,9 +29,15 @@ function Navbar() {
                 {role == "admin" ? <NavLink to={'/admin'} className='flex text-xl items-center gap-2 border px-4 py-2 rounded-2xl'>Admin <FaUserTie /></NavLink> : ''}
             </div>
 
-            <Register>
-                <button className='flex text-xl items-center gap-2 border py-2 px-6 rounded-2xl cursor-pointer active:scale-90'>Kirish <FaRegUserCircle /></button>
-            </Register>
+
+            {role ?
+                <ProfileModal />
+                :
+                <Register>
+                    <button className='flex text-xl items-center gap-2 border py-2 px-6 rounded-2xl cursor-pointer active:scale-90'>Kirish <FaRegUserCircle /></button>
+                </Register>
+
+            }
         </div>
     );
 }

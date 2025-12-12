@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { CgClose } from 'react-icons/cg';
+import { useGetUser } from '../../hooks/user';
+import { BiUser } from 'react-icons/bi';
 
 const style = {
   position: 'absolute',
@@ -16,7 +18,8 @@ const style = {
   p: 5,
 };
 
-export default function BasicModal() {
+export default function ProfileModal() {
+  const  { data, isLoading, error } = useGetUser()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -24,7 +27,7 @@ export default function BasicModal() {
   
   return (
     <div>
-      {/* <Button className='absolute right-[-87%] top-6' onClick={handleOpen}>Open modal</Button> */}
+      <button className='' onClick={handleOpen}><BiUser size={30}/></button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -34,9 +37,10 @@ export default function BasicModal() {
         <Box sx={style}>
             <CgClose onClick={handleClose}  className='text-2xl absolute right-5 top-4'/>
             <h1 className='text-center text-3xl text-blue-400'>User Profile</h1>
-            <img className='rounded-full w-30 mx-auto mt-6' src="https://di2ponv0v5otw.cloudfront.net/posts/2025/07/25/688436549f19e292722cbd2a/m_688600e47ac629cab0dd7cbd.jpg" alt="" />
-            <p className='text-2xl text-center mt-4'>UserName.</p>
-            <p className='text-xl text-center mt-2'>Email.</p>
+            <img className='rounded-full w-30 h-30 mx-auto mt-6' src="https://just2010.uz/upload/iblock/eab/0fig2ip6ltgo8htj9symjb6ekpzets9p.jpg" alt="s" />
+            <p className='text-2xl text-center mt-4'>{data?.username} {data?.first_name}</p>
+            <p className='text-xl text-center mt-2'>{data?.email}</p>
+            <p className='text-center'>{data?.role}</p>
         </Box>
       </Modal>
     </div>

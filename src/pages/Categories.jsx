@@ -1,8 +1,15 @@
 import React from 'react'
 import { GiClothes } from 'react-icons/gi';
 import Clothes from '../components/clothes/Clothes';
+import { useParams } from 'react-router-dom';
+import { usegetCatrgoryId } from '../hooks/categories';
 
 function Categories() {
+
+    const { id } = useParams();
+    const  { data, isLoading, error } = usegetCatrgoryId(id)
+    console.log(data)
+
 
     const categoryData = {
         id: 1,
@@ -20,6 +27,7 @@ function Categories() {
                 <div>
                     <h1 className='text-3xl font-bold'>{categoryData?.name}</h1>
                     <p className='text-[14px] text-gray-700 mt-2'>{categoryData?.count} ta maxsulot topildi</p>
+                    <p>{id}</p>
                 </div>
             </div>
             <Clothes />

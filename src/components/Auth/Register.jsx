@@ -7,7 +7,8 @@ import { BiBorderRadius } from 'react-icons/bi';
 import { CgClose } from 'react-icons/cg';
 import MiniLoader from '../Loader/MiniLoader';
 import { useGetNotify } from '../../hooks/Notify';
-
+import { uselogin, useRegister } from '../../hooks/auth';
+import Cookies from 'js-cookie'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -24,6 +25,8 @@ const style = {
 export default function Register({ children }) {
   const notify = useGetNotify();
 
+  const registerMutation = useRegister()
+  const loginMutation = uselogin()
   //Tabs
   const [tab, setTab] = useState("register");
 
@@ -43,15 +46,29 @@ export default function Register({ children }) {
     e.preventDefault()
     const registerData = {
       username,
-      firstname,
+      first_name: firstname,
       email,
       password,
+      role: 'user'
     }
     if (password.length < 6) {
       notify('err', "parol kamida 6 ta bo'lish kerak")
     }
     else {
-      notify('ok', "Royhatdan muvaffaqiyatli o'tdingiz")
+      registerMutation.mutate(
+        {
+          registerData,
+          onSuccess: (data) => {
+            notify('ok', data?.message)
+
+
+          },
+          onError: (err) => {
+            notify('err', err?.response?.data?.message)
+
+          }
+        })
+      // notify('ok', "Royhatdan muvaffaqiyatli o'tdingiz")
     }
 
     console.log(registerData);
@@ -73,16 +90,30 @@ export default function Register({ children }) {
       notify('err', "parol kamida 6 ta bo'lish kerak")
     }
     else {
-      notify('ok', "Tizimga kirish muvaffaqiyatli")
+
+      loginMutation.mutate(
+        {
+          LoginData,
+          onSuccess: (data) => {
+            notify('ok', data?.message)
+            Cookies.set('token',data?.token)
+            window.location.reload()
+            setTimeout(() => {
+              setLoading(false);
+            }, 2000);
+
+
+          },
+          onError: (err) => {
+            notify('err', err?.response?.data?.message)
+
+          }
+        })
     }
 
-    console.log(LoginData);
-    
-    setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+
+
 
   }
   return (
